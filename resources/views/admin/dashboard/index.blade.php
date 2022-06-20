@@ -22,9 +22,11 @@
                                 <h6 class="">Jumlah {{$menu == 'Tiket' ? $menu . ' Terjual' : ($menu == 'Camping' ? $menu . ' Terjual' : $menu)}}</h6>
                                 @if (totalProduk() > 0) 
                                     @if ($menu == 'Tiket' || $menu == 'Camping')
-                                    <h2 class="mb-0 number-font">{{totalDetailPendapatan('Tiket') > 0 ? totalPendapatan('Tiket') : (totalDetailPendapatan('Camping') > 0 ? totalPendapatan('Camping') : 0)}}</h2>
+                                    0
+                                    {{-- <h2 class="mb-0 number-font">{{totalDetailPendapatan('Tiket') > 0 ? totalPendapatan('Tiket') : (totalDetailPendapatan('Camping') > 0 ? totalPendapatan('Camping') : 0)}}</h2> --}}
                                     @else
-                                    <h2 class="mb-0 number-font">{{totalData($menu)}}</h2>
+                                    0
+                                    {{-- <h2 class="mb-0 number-font">{{totalData($menu)}}</h2> --}}
                                     @endif
                                 @else
                                     <h2 class="mb-0 number-font">0</h2>

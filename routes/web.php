@@ -83,6 +83,8 @@ Route::middleware('auth')->group(function(){
             Route::post('/checkout', 'CartController@checkout')->name('checkout');
             Route::post('/update-cart', 'CartController@updateCart')->name('cart.update');
             Route::get('/test', 'CartController@cart')->name('cart.test');
+            Route::get('/city/{province_id}', 'CartController@city')->name('cart.city');
+            Route::post('/ongkir', 'CartController@ongkir')->name('cart.ongkir');
         });
 
         Route::prefix('/order')->group(function(){

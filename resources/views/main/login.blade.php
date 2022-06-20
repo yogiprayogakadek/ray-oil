@@ -105,8 +105,8 @@
                                                         </div>
                                                         <div class="col-6">
                                                             <div class="form-group wrap-input100">
-                                                                <label class="form-label">Username</label>
-                                                                <input type="text" class="input100 form-control ms-0" name="username" id="username" placeholder="username">
+                                                                <label class="form-label">Email</label>
+                                                                <input type="text" class="input100 form-control ms-0" name="email" id="email" placeholder="email">
                                                             </div>
                                                             <div class="form-group wrap-input100">
                                                                 <label class="form-label">Password</label>

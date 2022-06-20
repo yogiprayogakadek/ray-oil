@@ -18,21 +18,27 @@
             <thead>
                 <tr>
                     <th>No</th>
-                    {{-- <th>Nama Pelanggan</th> --}}
                     <th>Tanggal Transaksi</th>
+                    <th>Alamat Pengiriman</th>
                     <th>Total Transaksi</th>
+                    <th>Status</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($transaksi as $data)
+                @foreach ($data as $data)
                 <tr>
-                    <td>{{$loop->iteration}}</td>
-                    {{-- <td>{{$data->user->nama}}</td> --}}
-                    <td>{{$data->tanggal_transaksi}}</td>
-                    <td>{{convertToRupiah($data->total_harga)}}</td>
+                    <td>{{$data['no']}}</td>
+                    <td>{{$data['tanggal_transaksi']}}</td>
                     <td>
-                        <button class="btn btn-primary btn-detail" data-id="{{$data->id_transaksi}}">
+                        Asal : {{$data['origin']}}<br>
+                        Tujuan : {{$data['destination']}}<br>
+                        Detail : {{$data['alamat']}}
+                    </td>
+                    <td>{{$data['total_harga']}}</td>
+                    <td>{{$data['status']}}</td>
+                    <td>
+                        <button class="btn btn-primary btn-detail" data-id="{{$data['id_transaksi']}}">
                             <i class="fa fa-eye"></i> Detail
                         </button>
                     </td>

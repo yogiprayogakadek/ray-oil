@@ -25,6 +25,12 @@
                     <div class="invalid-feedback error-nama"></div>
                 </div>
                 <div class="form-group">
+                    <label for="berat">Berat Produk</label>
+                    <input type="text" class="form-control" name="berat" id="berat" placeholder="masukkan berat produk">
+                    <span class="text-muted text-small">*berat produk dalam gram</span>
+                    <div class="invalid-feedback error-berat"></div>
+                </div>
+                <div class="form-group">
                     <label for="harga">Harga Produk</label>
                     <input type="text" class="form-control" name="harga" id="harga" placeholder="masukkan harga produk">
                     <div class="invalid-feedback error-harga"></div>

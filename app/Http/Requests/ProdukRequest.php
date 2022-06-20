@@ -29,6 +29,7 @@ class ProdukRequest extends FormRequest
             'nama' => 'required',
             'deskripsi' => 'required',
             'harga' => 'required',
+            'berat' => 'required|numeric',
             // 'stok' => 'required',
         ];
 
@@ -54,6 +55,7 @@ class ProdukRequest extends FormRequest
             'image' => ':attribute harus berupa gambar',
             'mimes' => ':attribute harus berupa gambar',
             'max' => ':attribute tidak boleh lebih dari 2MB',
+            'numeric' => ':attribute harus berupa angka',
         ];
     }
 
@@ -64,6 +66,7 @@ class ProdukRequest extends FormRequest
             'nama' => 'Nama produk',
             'deskripsi' => 'Deskripsi',
             'harga' => 'Harga',
+            'berat' => 'Berat',
             // 'stok' => 'Stok',
             'foto' => 'Foto',
         ];

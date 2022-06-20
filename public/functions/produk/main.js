@@ -126,6 +126,14 @@ $(document).ready(function () {
                             $('#nama').removeClass('is-invalid')
                             $('.error-nama').html('')
                         }
+                        if (error.responseJSON.errors.berat) {
+                            $('#berat').addClass('is-invalid')
+                            $('#berat').trigger('focus')
+                            $('.error-berat').html(error.responseJSON.errors.berat)
+                        } else {
+                            $('#berat').removeClass('is-invalid')
+                            $('.error-berat').html('')
+                        }
                         if (error.responseJSON.errors.harga) {
                             $('#harga').addClass('is-invalid')
                             $('#harga').trigger('focus')
@@ -251,6 +259,14 @@ $(document).ready(function () {
                         } else {
                             $('#nama').removeClass('is-invalid')
                             $('.error-nama').html('')
+                        }
+                        if (error.responseJSON.errors.berat) {
+                            $('#berat').addClass('is-invalid')
+                            $('#berat').trigger('focus')
+                            $('.error-berat').html(error.responseJSON.errors.berat)
+                        } else {
+                            $('#berat').removeClass('is-invalid')
+                            $('.error-berat').html('')
                         }
                         if (error.responseJSON.errors.harga) {
                             $('#harga').addClass('is-invalid')

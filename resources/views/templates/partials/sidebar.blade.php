@@ -19,6 +19,7 @@
                 <li class="sub-category">
                     <h3>Main</h3>
                 </li>
+                @can('admin')
                 <li class="slide">
                     <a class="side-menu__item has-link {{Request::is('admin') ? 'active' : '' }}" data-bs-toggle="slide"
                         href="{{route('admin.dashboard')}}"><i class="side-menu__icon fe fe-home"></i><span
@@ -37,6 +38,22 @@
                             class="side-menu__icon fe fe-aperture"></i><span class="side-menu__label">Produk</span>
                     </a>
                 </li>
+                @endcan
+                
+                @can('member')
+                <li class="slide">
+                    <a class="side-menu__item has-link {{Request::is('/') ? 'active' : '' }}" data-bs-toggle="slide"
+                        href="{{route('main')}}"><i class="side-menu__icon fe fe-home"></i><span
+                            class="side-menu__label">Home</span>
+                    </a>
+                </li>
+                <li class="slide">
+                    <a class="side-menu__item has-link {{Request::is('order') ? 'active' : '' }}" data-bs-toggle="slide"
+                        href="{{route('member.order.index')}}"><i class="side-menu__icon fe fe-book-open"></i><span
+                            class="side-menu__label">Order Histori</span>
+                    </a>
+                </li>
+                @endcan
                 {{-- <li class="slide"> 
                     <a class="side-menu__item has-link {{Request::is('dashboard') ? 'active' : (Request::is('/') ? 'active' : '') }}" data-bs-toggle="slide"
                         href="{{route('dashboard.index')}}"><i class="side-menu__icon fe fe-home"></i><span

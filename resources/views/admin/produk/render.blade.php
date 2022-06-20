@@ -19,6 +19,7 @@
                         <th>No</th>
                         <th>Kategori</th>
                         <th>Nama Produk</th>
+                        <th>Berat Produk</th>
                         <th>Harga</th>
                         {{-- <th>Deskripsi</th> --}}
                         <th>Foto</th>
@@ -31,6 +32,7 @@
                         <td>{{$loop->iteration}}</td>
                         <td>{{$data->kategori->nama}}</td>
                         <td>{{$data->nama}}</td>
+                        <td>{{$data->berat_barang}} gram</td>
                         <td>{{convertToRupiah($data->harga)}}</td>
                         {{-- <td>{!!$data->deskripsi!!}</td> --}}
                         {{-- <td>{!!strip_tags_content($data->deskripsi, $data->id_produk)!!}</td> --}}

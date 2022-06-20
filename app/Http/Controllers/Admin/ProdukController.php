@@ -56,6 +56,7 @@ class ProdukController extends Controller
                 'nama' => $request->nama,
                 'id_kategori' => $request->id_kategori,
                 'harga' => preg_replace('/[^0-9]/', '', $request->harga),
+                'berat_barang' => $request->berat,
                 // 'stok' => $request->stok,
                 // 'deskripsi' => $request->deskripsi,
             ];
@@ -160,6 +161,7 @@ class ProdukController extends Controller
                 'id_kategori' => $request->id_kategori,
                 'harga' => preg_replace('/[^0-9]/', '', $request->harga),
                 'stok' => $request->stok,
+                'berat_barang' => $request->berat,
                 // 'deskripsi' => $request->deskripsi,
             ];
 

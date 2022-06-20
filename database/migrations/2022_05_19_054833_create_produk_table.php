@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('id_kategori')->references('id_kategori')->on('kategori')->onDelete('cascade');
             $table->string('nama', 50);
             $table->integer('harga');
+            $table->integer('berat_barang')->comment('berat barang dalam gram');
             $table->string('foto', 100);
             $table->text('deskripsi');
             $table->timestamps();

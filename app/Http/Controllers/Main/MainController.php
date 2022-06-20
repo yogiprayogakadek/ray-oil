@@ -41,7 +41,7 @@ class MainController extends Controller
         try {
             DB::transaction(function () use ($request) {
                 $data = [
-                    'username' => $request->username,
+                    'email' => $request->email,
                     'password' => bcrypt($request->password),
                     'nama' => $request->nama,
                     'tempat_lahir' => $request->tempat_lahir,

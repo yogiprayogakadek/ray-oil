@@ -201,15 +201,19 @@
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-				{{-- @if (Auth::check())
+				@if (Auth::check())
 				@can('member')
-				<button class="btn ripple btn-primary me-2 add-to-cart" data-id="{{$data['id_produk']}}"><i
+				<button class="btn ripple btn-primary me-2 add-to-cart"><i
 					class="fe fe-shopping-cart"> </i> Order</button>
+				{{-- <button class="btn ripple btn-primary me-2 add-to-cart" data-id="{{$data['id_produk']}}"><i
+					class="fe fe-shopping-cart"> </i> Order</button> --}}
 				@endcan
 				@else
-				<button class="btn ripple btn-primary me-2 must-login" data-admin="false" data-id="{{$data['id_produk']}}"><i
+				<button class="btn ripple btn-primary me-2 must-login" data-admin="false"><i
 					class="fe fe-shopping-cart"> </i> Order</button>
-				@endif --}}
+				{{-- <button class="btn ripple btn-primary me-2 must-login" data-admin="false" data-id="{{$data['id_produk']}}"><i
+					class="fe fe-shopping-cart"> </i> Order</button> --}}
+				@endif
 			</div>
 		</div>
 	</div>
@@ -251,6 +255,7 @@
 		let kategori = $(this).attr('data-kategori');
 		let deskripsi = $(this).attr('data-deskripsi');
 
+		$('#modalDetail').find('.add-to-cart').attr('data-id', id);
 		$('#modalDetail #id_produk').val(id);
 		$('#modalDetail #nama').html(nama);
 		$('#modalDetail #harga').html(harga);

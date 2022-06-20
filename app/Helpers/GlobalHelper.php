@@ -240,3 +240,14 @@ function bulan()
 
     return $bulan;
 }
+
+function productWeight()
+{
+    $cart = \Cart::session(auth()->user()->id_user)->getContent();
+    $berat_bersih = 0;
+    foreach ($cart as $item) {
+        $berat_bersih += $item->associatedModel['berat_barang'] * $item->quantity;
+    }
+
+    return $berat_bersih;
+}
