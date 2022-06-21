@@ -45,11 +45,11 @@
 			<div class="col-xl-6 col-lg-6 col-md-12 col-12">
 				<div class="row">
 					<div class="col-xl-6 col-lg-6 col-md-12 col-12">
-						<img src="assets/images/banyuwana_1.jpg" alt="Image" >
+						<img src="{{asset('assets/images/photos/ray_oil_55.jpg')}}" alt="Image" >
 					</div>
 
 					<div class="col-xl-6 col-lg-6 col-md-12 col-12">
-						<img src="assets/images/banyuwana_2.jpg" alt="Image" class="mt-30">
+						<img src="{{asset('assets/images/photos/ray_oil_48.jpg')}}" alt="Image" class="mt-30">
 					</div>
 				</div>
 			</div><!-- END COL -->
@@ -66,7 +66,7 @@
 			<div class="col-md-12" data-aos="fade-up">
 				<div class="section-title text-center">
 					{{-- <h2>Popular Package</h2> --}}
-					<p>Our Packages</p>
+					<p>Our Products</p>
 				</div>
 			</div><!-- END COL -->
 		</div><!-- END ROW -->
@@ -106,7 +106,7 @@
 			<div class="col-md-12" data-aos="fade-up">
 				<div class="section-title text-center">
 					{{-- <h2>Tour Gallery</h2> --}}
-					<p>Waterfall Gallery</p>
+					<p>Gallery</p>
 				</div>
 			</div><!-- END COL -->
 		</div><!-- END ROW -->
@@ -115,36 +115,36 @@
 			<div class="row">
 				<div class="col-xl-4 col-lg-4 col-md-6 col-12 portfolio-item">
 					<div class="single-gallery">
-						<img src="assets/images/banyuwana_3.jpg" alt="gallery Image">
-						<a href="assets/images/banyuwana_3.jpg" class="gallery_enlarge_icon"><i class="icofont-ui-zoom-in"></i></a>
+						<img src="{{asset('assets/images/photos/ray_oil_57.jpg')}}" alt="gallery Image">
+						<a href="{{asset('assets/images/photos/ray_oil_57.jpg')}}" class="gallery_enlarge_icon"><i class="icofont-ui-zoom-in"></i></a>
 					</div>
 				</div><!-- End Col -->
 
 				<div class="col-xl-4 col-lg-4 col-md-6 col-12 portfolio-item">
 					<div class="single-gallery">
-						<img src="assets/images/banyuwana_4.jpg" alt="gallery Image">
-						<a href="assets/images/banyuwana_4.jpg" class="gallery_enlarge_icon"><i class="icofont-ui-zoom-in"></i></a>
+						<img src="{{asset('assets/images/photos/ray_oil_36.jpg')}}" alt="gallery Image">
+						<a href="{{asset('assets/images/photos/ray_oil_36.jpg')}}" class="gallery_enlarge_icon"><i class="icofont-ui-zoom-in"></i></a>
 					</div>
 				</div><!-- End Col -->
 
 				<div class="col-xl-4 col-lg-4 col-md-6 col-12 portfolio-item">
 					<div class="single-gallery">
-						<img src="assets/images/banyuwana_5.jpg" alt="gallery Image">
-						<a href="assets/images/banyuwana_5.jpg" class="gallery_enlarge_icon"><i class="icofont-ui-zoom-in"></i></a>
+						<img src="{{asset('assets/images/photos/ray_oil_41.jpg')}}" alt="gallery Image">
+						<a href="{{asset('assets/images/photos/ray_oil_41.jpg')}}" class="gallery_enlarge_icon"><i class="icofont-ui-zoom-in"></i></a>
 					</div>
 				</div><!-- End Col -->
 
 				<div class="col-xl-6 col-lg-6 col-md-6 col-12 portfolio-item">
 					<div class="single-gallery">
-						<img src="assets/images/banyuwana_6.jpg" alt="gallery Image">
-						<a href="assets/images/banyuwana_6.jpg" class="gallery_enlarge_icon"><i class="icofont-ui-zoom-in"></i></a>
+						<img src="{{asset('assets/images/photos/ray_oil_35.jpg')}}" alt="gallery Image">
+						<a href="{{asset('assets/images/photos/ray_oil_35.jpg')}}" class="gallery_enlarge_icon"><i class="icofont-ui-zoom-in"></i></a>
 					</div>
 				</div><!-- End Col -->
 
 				<div class="col-xl-6 col-lg-6 col-md-6 col-12 portfolio-item">
 					<div class="single-gallery">
-						<img src="assets/images/banyuwana_7.jpg" alt="gallery Image">
-						<a href="assets/images/banyuwana_7.jpg" class="gallery_enlarge_icon"><i class="icofont-ui-zoom-in"></i></a>
+						<img src="{{asset('assets/images/photos/ray_oil_55.jpg')}}" alt="gallery Image">
+						<a href="{{asset('assets/images/photos/ray_oil_55.jpg')}}" class="gallery_enlarge_icon"><i class="icofont-ui-zoom-in"></i></a>
 					</div>
 				</div><!-- End Col -->
 			</div>

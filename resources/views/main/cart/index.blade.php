@@ -179,7 +179,7 @@
             $('.courier-group').hide();
             
             // change provinsi
-            $('#provinsi').change(function () {
+            $('body').on('change', '#provinsi', function () {
                 $('#kota').empty();
                 var provinsi = $(this).val();
                 var bill_before = $('body .subtotal').text();
@@ -206,7 +206,7 @@
             });
 
             // change kota
-            $('#kota').change(function () {
+            $('body').on('change', '#kota', function () {
                 var kota = $(this).val();
                 var kurir = $('#courier').val();
                 var provinsi = $('#provinsi').val();
@@ -345,9 +345,24 @@
                         qty: qty,
                         cat: cat,
                         total_harga: $('body .bill').text().replace(/[^0-9]/g,''),
+                        provinsi: $('#provinsi').val(),
+                        kota: $('#kota').val(),
+                        alamat: $('#alamat').val(),
                         _token: $('meta[name="csrf-token"]').attr('content')
                     },
                     success: function (result) {
+                        setTimeout(() => {
+                            $('.city-group').hide();
+                            $('body').find('.complete-address').hide();
+                            $('body').find('#provinsi').trigger('change');
+                        }, 500);
+                        setTimeout(() => {
+                            $('body').find('#kota').val(result.id_kota).trigger('change');
+                            $('body').find('#alamat').val(result.alamat);
+                        }, 1500);
+                        // setTimeout(() => {
+                        //     $('body').find('#alamat').val(result.alamat);
+                        // }, 3000);
                         Swal.fire(
                             result.title,
                             result.message,
@@ -377,9 +392,21 @@
                         qty: qty,
                         cat: cat,
                         total_harga: $('body .bill').text().replace(/[^0-9]/g,''),
+                        provinsi: $('#provinsi').val(),
+                        kota: $('#kota').val(),
+                        alamat: $('#alamat').val(),
                         _token: $('meta[name="csrf-token"]').attr('content')
                     },
                     success: function (result) {
+                        setTimeout(() => {
+                            $('.city-group').hide();
+                            $('body').find('.complete-address').hide();
+                            $('body').find('#provinsi').trigger('change');
+                        }, 500);
+                        setTimeout(() => {
+                            $('body').find('#kota').val(result.id_kota).trigger('change');
+                            $('body').find('#alamat').val(result.alamat);
+                        }, 1500);
                         Swal.fire(
                             result.title,
                             result.message,

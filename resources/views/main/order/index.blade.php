@@ -188,6 +188,7 @@
             $('#id_transaksi').val(id)
             if (status == '0') {
                 $('.pembayaran-group').show()
+                $('.btn-edit').hide()
             } else {
                 $('.pembayaran-group').hide()
                 $('.btn-save').hide()

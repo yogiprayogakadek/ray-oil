@@ -26,7 +26,7 @@
                                             <img src="{{ asset($cart->associatedModel['foto']) }}" class="text-center" style="width: 100px"> 
                                         </div>
                                     </td>
-                                    <td>{{ $cart->name }}</td>
+                                    <td>{{ $cart->name }} <br> ({{$cart->associatedModel['berat_barang']}} gram)</td>
                                     <td class="fw-bold">{{convertToRupiah($cart->price)}}</td>
                                     <td>
                                         <div class="handle-counter" id="handleCounter4"> 
@@ -62,7 +62,45 @@
         <div class="row mt-2">
             <div class="col-4"></div>
             <div class="col-4"></div>
-            <div class="col-4">
+            <div class="col-4 mb-2">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Tujuan Pengiriman</div>
+                    </div>
+                    <div class="card-body py-2">
+                        <div class="form-group">
+                            <label for="">Provinsi</label>
+                            <select class="form-control" id="provinsi">
+                                @foreach ($provinsi as $key => $value)
+                                <option value="{{$key}}" {{$key == $id_provinsi ? 'selected' : ''}}>{{$value}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group city-group">
+                            <label for="">Kota</label>
+                            <select class="form-control" id="kota"></select>
+                        </div>
+                        <div class="form-group complete-address">
+                            <label for="">Alamat Lengkap</label>
+                            <textarea name="address" id="address" class="form-control" rows="10"></textarea>
+                        </div>
+                        {{-- <div class="form-group courier-group">
+                            <label for="">Kurir</label>
+                            <select class="form-control" id="courier">
+                                <option value="">Pilih Kurir</option>
+                                <option value="jne">JNE</option>
+                                <option value="tiki">TIKI</option>
+                                <option value="pos">POS</option>
+                            </select>
+                        </div> --}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-4"></div>
+            <div class="col-4"></div>
+            <div class="col-4 mb-2">
                 <div class="card">
                     <div class="card-header">
                         <div class="card-title">Cart Totals</div>
@@ -76,9 +114,19 @@
                                         <td class="text-end"><span class="fw-bold text-success">{{validQuantity()}}</span></td>
                                     </tr>
                                     <tr>
+                                        <td class="text-start">Berat Barang</td>
+                                        <td class="text-end"><span class="fw-bold text-success product-weight">{{productWeight()}} gram</span></td>
+                                    </tr>
+                                    <tr>
                                         <td class="text-start">Sub Total</td>
                                         <td class="text-end">
                                             <span class="fw-bold  ms-auto subtotal">{{validSubTotal()}}</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-start">Ongkos Kirim</td>
+                                        <td class="text-end">
+                                            <span class="fw-bold ms-auto ongkir">0</span>
                                         </td>
                                     </tr>
                                     <tr>

@@ -12,7 +12,7 @@
             <strong>Hai!</strong>
             Selamat datang, {{nama()}}
         </div>
-        <div class="row">
+        {{-- <div class="row">
             @foreach (menu() as $key => $menu)
             <div class="col-lg-6 col-md-6 col-sm-12 col-xl-3">
                 <div class="card overflow-hidden">
@@ -22,18 +22,18 @@
                                 <h6 class="">Jumlah {{$menu == 'Tiket' ? $menu . ' Terjual' : ($menu == 'Camping' ? $menu . ' Terjual' : $menu)}}</h6>
                                 @if (totalProduk() > 0) 
                                     @if ($menu == 'Tiket' || $menu == 'Camping')
-                                    0
+                                    0 --}}
                                     {{-- <h2 class="mb-0 number-font">{{totalDetailPendapatan('Tiket') > 0 ? totalPendapatan('Tiket') : (totalDetailPendapatan('Camping') > 0 ? totalPendapatan('Camping') : 0)}}</h2> --}}
-                                    @else
-                                    0
+                                    {{-- @else
+                                    0 --}}
                                     {{-- <h2 class="mb-0 number-font">{{totalData($menu)}}</h2> --}}
-                                    @endif
+                                    {{-- @endif
                                 @else
                                     <h2 class="mb-0 number-font">0</h2>
                                 @endif
                             </div>
-                        </div>
-                        <a href="{{route(RouteUrl()[$key])}}">
+                        </div> --}}
+                        {{-- <a href="{{route(RouteUrl()[$key])}}">
                             <span class="text-muted fs-12">
                                 <span class="text-secondary">
                                     <i class="fe fe-arrow-right-circle text-secondary"></i> Detail
@@ -44,7 +44,7 @@
                 </div>
             </div>
             @endforeach
-        </div>
+        </div> --}}
 
         <div class="card">
             <div class="card-header bg-info-transparent card-transparent">

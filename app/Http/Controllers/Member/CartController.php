@@ -95,13 +95,15 @@ class CartController extends Controller
 
     public function updateCart(Request $request)
     {
-        // dd($request->all());
+        // dd($request->provinsi);
+        $provinsi = Provinsi::pluck('nama_provinsi', 'id_provinsi')->prepend('Pilih Provinsi', '');
         $user_id = auth()->user()->id_user;
         $cart = \Cart::session($user_id)->getContent();
         $produkById = Produk::find($request->id_produk);
         $semuaProduk = Produk::all();
         $dataProduk = [];
         $total_harga = $request->total_harga;
+        $id_provinsi = $request->provinsi;
         foreach ($semuaProduk as $value) {
             $dataProduk += [
                 $value->id_produk => [
@@ -119,10 +121,13 @@ class CartController extends Controller
         ]);
 
         return response()->json([
-            'data' => view('main.cart.update', compact('cart', 'dataProduk', 'total_harga',))->render(),
+            'data' => view('main.cart.update', compact('cart', 'dataProduk', 'total_harga', 'provinsi', 'id_provinsi'))->render(),
             'status' => 'success',
             'message' => 'Produk berhasil diupdate',
             'title' => 'Berhasil',
+            'id_provinsi' => $id_provinsi,
+            'id_kota' => $request->kota,
+            'alamat' => $request->alamat,
             // 'cart' => view('templates.partials.header-update')->render(),
         ]);
 
