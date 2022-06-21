@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Kota;
+use App\Models\Pembayaran;
 use App\Models\Transaksi;
 use Illuminate\Http\Request;
 
@@ -22,6 +24,71 @@ class TransaksiController extends Controller
         ];
 
         return response()->json($view);
+    }
+
+    public function updateStatus(Request $request)
+    {
+        $transaksi = Transaksi::find($request->id_transaksi);
+        $pembayaran = Pembayaran::where('id_transaksi',$transaksi->id_transaksi)->first();
+
+        try {
+            // dd($request->all());
+            if($request->has('status_pembayaran')) {
+                if($pembayaran->status == 'Pembayaran Diterima') {
+                    // dd(1);
+                    if($request->status_pembayaran != 'Pembayaran Diterima') {
+                        $transaksi->update([
+                            'status' => $request->status_transaksi
+                        ]);
+                        $pembayaran->update([
+                            'status' => $request->status_pembayaran
+                        ]);
+                    }
+                }
+            }
+
+            if(in_array($transaksi->status, ['Transaksi Diterima', 'Transaksi Ditolak'])) {
+                // dd(2);
+                $transaksi->update([
+                    'status' => $request->status_transaksi
+                ]);
+                $pembayaran->update([
+                    'status' => $request->status_pembayaran
+                ]);
+            } else {
+                if($request->status_transaksi == 'Menunggu Konfirmasi Pembayaran') {
+                    // dd(3);
+                    $transaksi->update([
+                        'status' => $request->status_transaksi
+                    ]);
+                    $pembayaran->update([
+                        'status' => 'Menunggu Konfirmasi Pembayaran'
+                    ]);
+                } else {
+                    // dd($request->all());
+                    $transaksi->update([
+                        'status' => $request->status_transaksi
+                    ]);
+                    $pembayaran->update([
+                        'status' => $request->status_pembayaran
+                    ]);
+                }
+            }
+
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Status transaksi berhasil diubah',
+                'title' => 'Berhasil'
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => $e->getMessage(),
+                'title' => 'Gagal'
+            ]);
+        }
+
+        return response()->json(['success' => true]);
     }
     
     public function print($start, $end)
@@ -46,7 +113,17 @@ class TransaksiController extends Controller
                 'subtotal' => convertToRupiah($detail->produk->harga * $detail->jumlah)
             ];
         }
-        return response()->json($data);
+        return response()->json([
+            'detail' => $data,
+            'transaksi' => [
+                'origin' => Kota::where('id_kota', json_decode($transaksi->alamat_pengiriman)[0]->origin)->first()->nama_kota,
+                'destination' => Kota::where('id_kota', json_decode($transaksi->alamat_pengiriman)[0]->destination)->first()->nama_kota,
+                'ongkir' => convertToRupiah(json_decode($transaksi->alamat_pengiriman)[0]->cost),
+                'alamat' => json_decode($transaksi->alamat_pengiriman)[0]->detail_alamat,
+                'status' => $transaksi->status,
+                'tanggal' => $transaksi->tanggal_transaksi,
+            ]
+        ]);
     }
 
     public function delete(Request $request)

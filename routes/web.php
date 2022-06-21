@@ -65,21 +65,21 @@ Route::middleware('auth')->group(function(){
             Route::get('/delete/{id}', 'ProdukController@delete')->name('produk.delete');
         });
 
-        Route::prefix('/pembayaran')->name('pembayaran.')->group(function(){
+        Route::prefix('/transaksi')->name('transaksi.')->group(function(){
             Route::get('/', 'TransaksiController@index')->name('index');
             Route::get('/render', 'TransaksiController@render')->name('render');
             Route::post('/change-status-pembayaran', 'TransaksiController@updateStatus')->name('status.pembayaran');
             Route::get('/print', 'TransaksiController@print')->name('print');
-        });
-
-        Route::prefix('/transaksi')->name('transaksi.')->group(function() {
-            Route::get('/', 'TransaksiController@index')->name('index');
-            Route::post('/update', 'TransaksiController@update')->name('update');
             Route::get('/render/{start}/{end}', 'TransaksiController@render')->name('render');
             Route::get('/print/{start}/{end}', 'TransaksiController@print')->name('print');
-            Route::get('/delete/{id}', 'TransaksiController@delete')->name('delete');
             Route::get('/detail/{id}', 'TransaksiController@detail')->name('detail');
         });
+
+        // Route::prefix('/transaksi')->name('transaksi.')->group(function() {
+        //     Route::get('/', 'TransaksiController@index')->name('index');
+        //     Route::post('/update', 'TransaksiController@update')->name('update');
+        //     Route::get('/delete/{id}', 'TransaksiController@delete')->name('delete');
+        // });
     });
 
     Route::namespace('Member')->name('member.')->group(function(){

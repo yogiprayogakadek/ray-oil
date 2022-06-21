@@ -26,15 +26,21 @@ $(document).ready(function () {
         getData($('#start_date').val(), $('#end_date').val());
     })
 
+    $('body').on('click', '.btn-update-status', function(){
+        $('.btn-update-status').hide();
+        $('#status_pembayaran').attr('readonly', false);
+    });
+
     $('body').on('click', '.btn-edit', function() {
         let id = $(this).data('id');
         let pembayaran = $(this).data('pembayaran');
         let transaksi = $(this).data('transaksi');
         if(pembayaran == 'Pembayaran Diterima'){
             $('.btn-update-status').show();
+            $('#status_pembayaran').attr('readonly', true);
         } else {
             $('.btn-update-status').hide();
-            $('#modalUpdate').find('#status_transaksi').attr('disabled', true);
+            $('#modalUpdate').find('#status_transaksi').attr('readonly', true);
         }
         $('#modalUpdate').find('#id_transaksi').val(id);
         $('#modalUpdate').find('#status_pembayaran').val(pembayaran);
@@ -55,6 +61,60 @@ $(document).ready(function () {
         }
     });
 
+    $('body').on('click', '.btn-save', function() {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        let form = $('#formTransaksi')[0]
+        let data = new FormData(form)
+
+        $.ajax({
+            type: "POST",
+            url: "/admin/transaksi/change-status-pembayaran",
+            data: data,
+            processData: false,
+            contentType: false,
+            cache: false,
+            success: function (response) {
+                Swal.fire({
+                    title: response.title,
+                    text: response.message,
+                    icon: response.status,
+                });
+                $('#modalUpdate').modal('hide');
+                getData($('#start_date').val(), $('#end_date').val());
+            },
+            error: function (error) {
+                console.log("Error", error);
+            }
+        });
+    }); 
+
+    $('body').on('click', '.btn-detail', function() {
+        let id = $(this).data('id');
+        $('#modalDetail').modal('show');
+        $.get('/admin/transaksi/detail/'+id, function(response){
+            $('#modalDetail').find('#asal').html(response.transaksi.origin);
+            $('#modalDetail').find('#tujuan').html(response.transaksi.destination);
+            $('#modalDetail').find('#alamat').html(response.transaksi.alamat);
+            $('#modalDetail').find('#tanggal').html(response.transaksi.tanggal);
+            $('#modalDetail').find('#ongkir').html(response.transaksi.ongkir);
+            $('#tableDetail tbody').empty();
+            $.each(response.detail, function(key, value){
+                console.log(value);
+                var tr = '<tr>' +
+                            '<td>'+(key+1)+'</td>' +
+                            '<td>'+value.nama+'</td>' +
+                            '<td>'+value.jumlah+'</td>' +
+                            '<td>'+value.harga+'</td>' +
+                            '<td>'+value.subtotal+'</td>' +
+                        '</tr>';
+                $('#tableDetail tbody').append(tr);
+            });
+        });
+    });
 
     // delete data
     $('body').on('click', '.btn-delete', function () {
@@ -90,32 +150,32 @@ $(document).ready(function () {
         })
     });
 
-    // detail
-    $('body').on('click', '.btn-detail', function() {
-        $('#tableDetail tbody').empty();
-        let id = $(this).data('id')
-        $.ajax({
-            type: "get",
-            url: "/admin/transaksi/detail/" + id,
-            dataType: "json",
-            success: function (response) {
-                $.each(response, function (index, value) {
-                    var tr = '<tr>' +
-                                '<td>' + (index+1) + '</td>' +
-                                '<td>' + value.nama + '</td>' +
-                                '<td>' + value.harga + '</td>' +
-                                '<td>' + value.jumlah+ '</td>' +
-                                '<td>' + value.subtotal+ '</td>' +
-                            '</tr>';
-                    $('#tableDetail tbody').append(tr);
-                });
-                $("#modalDetail").modal('show');
-            },
-            error: function (error) {
-                console.log("Error", error);
-            },
-        });
-    });
+    // // detail
+    // $('body').on('click', '.btn-detail', function() {
+    //     $('#tableDetail tbody').empty();
+    //     let id = $(this).data('id')
+    //     $.ajax({
+    //         type: "get",
+    //         url: "/admin/transaksi/detail/" + id,
+    //         dataType: "json",
+    //         success: function (response) {
+    //             $.each(response, function (index, value) {
+    //                 var tr = '<tr>' +
+    //                             '<td>' + (index+1) + '</td>' +
+    //                             '<td>' + value.nama + '</td>' +
+    //                             '<td>' + value.harga + '</td>' +
+    //                             '<td>' + value.jumlah+ '</td>' +
+    //                             '<td>' + value.subtotal+ '</td>' +
+    //                         '</tr>';
+    //                 $('#tableDetail tbody').append(tr);
+    //             });
+    //             $("#modalDetail").modal('show');
+    //         },
+    //         error: function (error) {
+    //             console.log("Error", error);
+    //         },
+    //     });
+    // });
 
     $('body').on('click', '.btn-print', function () {
         Swal.fire({

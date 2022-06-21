@@ -2,11 +2,11 @@
     <div class="app-sidebar__overlay" data-bs-toggle="sidebar"></div>
     <div class="app-sidebar ps ps--active-y sidemenu-scroll">
         <div class="side-header"> <a class="header-brand1" href="{{route('main')}}"> <img
-                    src="{{asset('assets/images/logo.jpeg')}}" class="header-brand-img desktop-logo"
-                    alt="logo"> <img src="{{asset('assets/images/logo.jpeg')}}"
+                    src="{{asset('assets/images/logo/logo.png')}}" class="header-brand-img desktop-logo"
+                    alt="logo"> <img src="{{asset('assets/images/logo/logo.png')}}"
                     class="header-brand-img toggle-logo" alt="logo"> <img
-                    src="{{asset('assets/images/logo.jpeg')}}" class="header-brand-img light-logo"
-                    alt="logo"> <img src="{{asset('assets/images/logo.jpeg')}}"
+                    src="{{asset('assets/images/logo/logo.png')}}" class="header-brand-img light-logo"
+                    alt="logo"> <img src="{{asset('assets/images/logo/logo.png')}}"
                     class="header-brand-img light-logo1" style="width: 100px" alt="logo"> </a> <!-- LOGO -->
         </div>
         <div class="main-sidemenu">
@@ -39,8 +39,8 @@
                     </a>
                 </li>
                 <li  class="slide">
-                    <a class="side-menu__item has-link {{Request::is('admin/produk') ? 'active' : '' }}"
-                        data-bs-toggle="slide" href="{{route('admin.pembayaran.index')}}"><i
+                    <a class="side-menu__item has-link {{Request::is('admin/transaksi') ? 'active' : '' }}"
+                        data-bs-toggle="slide" href="{{route('admin.transaksi.index')}}"><i
                             class="side-menu__icon fe fe-moon"></i><span class="side-menu__label">Pembayaran</span>
                     </a>
                         {{-- <span class="badge bg-pink side-badge">{{pembayaranBaru()}}</span> --}}
