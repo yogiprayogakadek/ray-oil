@@ -12,7 +12,7 @@ header("Access-Control-Allow-Origin: *");
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 	<!-- SITE TITLE -->
-	<title>Banyu Wana Amerta</title>
+	<title>Ray Oil</title>
 	<!-- Latest Bootstrap min CSS -->
 	<link rel="stylesheet" href="https://getmasum.com/html-preview/ward/assets/bootstrap/css/bootstrap.min.css">
 	<!-- Google Font -->
@@ -139,7 +139,8 @@ header("Access-Control-Allow-Origin: *");
 							<div class="hero-text">
 								<p>Welcome to</p>
 								<h1>
-									BANYU WANA AMERTA <br> Waterfall
+									Rays Oil 
+									{{-- <br> Waterfall --}}
 								</h1>
 								<div class="sl_btn_group">
 									<a href="#why_choose" class="btn btn-default btn-home-bg">Discover Now</a>
@@ -168,7 +169,7 @@ header("Access-Control-Allow-Origin: *");
 			<div class="footer-top">
 				<div class="row">
 					<div class="text-center">
-						<h3 class="text-white">Location <br> BANYU WANA AMERTA</h3>
+						<h3 class="text-white">Location <br> Ray Oil</h3>
 					</div>
 					<div id="map" style="height: 400px"></div>
 				</div>
@@ -176,7 +177,7 @@ header("Access-Control-Allow-Origin: *");
 
 			<div class="footer-bottom text-center">
 				<p class="copyright_text">
-					Copyright @ 2022 <a href="/">Banyu Wana Amerta</a> all right reserved.
+					Copyright @ 2022 <a href="/">Ray Oil</a> all right reserved.
 				</p>
 				{{-- <ul class="foot_social_link">
 					<li><a href="#"><i class="fab fa-facebook"></i></a></li>

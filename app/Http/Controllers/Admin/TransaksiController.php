@@ -15,7 +15,7 @@ class TransaksiController extends Controller
 
     public function render($start, $end)
     {
-        $data = Transaksi::with('user', 'detail_transaksi')->whereBetween('tanggal_transaksi', [$start, $end])->get();
+        $data = Transaksi::with('user', 'detail_transaksi', 'pembayaran')->whereBetween('tanggal_transaksi', [$start, $end])->get();
 
         $view = [
             'data' => view('admin.transaksi.render', compact('data'))->render()

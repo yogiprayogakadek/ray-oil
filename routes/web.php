@@ -65,6 +65,13 @@ Route::middleware('auth')->group(function(){
             Route::get('/delete/{id}', 'ProdukController@delete')->name('produk.delete');
         });
 
+        Route::prefix('/pembayaran')->name('pembayaran.')->group(function(){
+            Route::get('/', 'TransaksiController@index')->name('index');
+            Route::get('/render', 'TransaksiController@render')->name('render');
+            Route::post('/change-status-pembayaran', 'TransaksiController@updateStatus')->name('status.pembayaran');
+            Route::get('/print', 'TransaksiController@print')->name('print');
+        });
+
         Route::prefix('/transaksi')->name('transaksi.')->group(function() {
             Route::get('/', 'TransaksiController@index')->name('index');
             Route::post('/update', 'TransaksiController@update')->name('update');
@@ -90,6 +97,7 @@ Route::middleware('auth')->group(function(){
         Route::prefix('/order')->group(function(){
             Route::get('/', 'OrderController@index')->name('order.index');
             Route::get('/detail/{id}', 'OrderController@detail')->name('order.detail');
+            Route::post('/bukti-pembayaran', 'OrderController@unggahBukti')->name('order.unggah');
         });
     });
 });

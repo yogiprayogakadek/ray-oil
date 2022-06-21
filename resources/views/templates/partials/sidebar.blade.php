@@ -38,6 +38,14 @@
                             class="side-menu__icon fe fe-aperture"></i><span class="side-menu__label">Produk</span>
                     </a>
                 </li>
+                <li  class="slide">
+                    <a class="side-menu__item has-link {{Request::is('admin/produk') ? 'active' : '' }}"
+                        data-bs-toggle="slide" href="{{route('admin.pembayaran.index')}}"><i
+                            class="side-menu__icon fe fe-moon"></i><span class="side-menu__label">Pembayaran</span>
+                    </a>
+                        {{-- <span class="badge bg-pink side-badge">{{pembayaranBaru()}}</span> --}}
+                    </a>
+                </li>
                 @endcan
                 
                 @can('member')

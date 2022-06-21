@@ -1,7 +1,7 @@
 @extends('templates.master')
 
 @section('title', 'Pembelian')
-@section('pwd', 'Banyu Wana Amerta')
+@section('pwd', 'Ray Oil')
 @section('sub-pwd', 'Pembelian')
 @push('css')
 <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -38,7 +38,15 @@
                     <td>{{$data['total_harga']}}</td>
                     <td>{{$data['status']}}</td>
                     <td>
-                        <button class="btn btn-primary btn-detail" data-id="{{$data['id_transaksi']}}">
+                        @if ($data['pembayaran'] == '-')
+                        <button class="btn btn-success btn-pembayaran" data-status="0" data-id="{{$data['id_transaksi']}}">
+                            <i class="fa fa-money"></i> Unggah Bukti Pembayaran
+                        </button>
+                        @else
+                        <button class="btn btn-success btn-pembayaran" data-status="1" data-image="{{$data['pembayaran']}}" data-id="{{$data['id_transaksi']}}">
+                            <i class="fa fa-money"></i> Bukti Pembayaran
+                        @endif
+                        <button class="btn btn-primary btn-detail m-1" data-id="{{$data['id_transaksi']}}">
                             <i class="fa fa-eye"></i> Detail
                         </button>
                     </td>
@@ -47,6 +55,40 @@
             </tbody>
         </table>
     </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modalPembayaran" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Pembayaran</h5>
+                        <button type="button" class="btn btn-danger btn-sm" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                </div>
+                <form id="formPembayaran">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group image"></div>
+                                <div class="form-group pembayaran-group">
+                                    <input type="hidden" name="id_transaksi" id="id_transaksi">
+                                    <label for="">Bukti Pembayaran</label>
+                                    <input type="file" class="form-control" id="bukti_pembayaran" name="bukti_pembayaran">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-success btn-save">Simpan</button>
+                        <button type="button" class="btn btn-success btn-edit">Ubah Pembayaran</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    {{-- end modal --}}
     
     <!-- Modal -->
     <div class="modal fade" id="modalDetail" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
@@ -114,30 +156,91 @@
 
         // detail
         $('body').on('click', '.btn-detail', function() {
-                $('#tableDetail tbody').empty();
-                let id = $(this).data('id')
-                $.ajax({
-                    type: "get",
-                    url: "/order/detail/" + id,
-                    dataType: "json",
-                    success: function (response) {
-                        $.each(response, function (index, value) { 
-                            var tr = '<tr>' +
-                                        '<td>' + (index+1) + '</td>' +
-                                        '<td>' + value.nama + '</td>' +
-                                        '<td>' + value.harga + '</td>' +
-                                        '<td>' + value.jumlah+ '</td>' +
-                                        '<td>' + value.subtotal+ '</td>' +
-                                    '</tr>';
-                            $('#tableDetail tbody').append(tr);
-                        });
-                        $("#modalDetail").modal('show');
-                    },
-                    error: function (error) {
-                        console.log("Error", error);
-                    },
-                });
+            $('#tableDetail tbody').empty();
+            let id = $(this).data('id')
+            $.ajax({
+                type: "get",
+                url: "/order/detail/" + id,
+                dataType: "json",
+                success: function (response) {
+                    $.each(response, function (index, value) { 
+                        var tr = '<tr>' +
+                                    '<td>' + (index+1) + '</td>' +
+                                    '<td>' + value.nama + '</td>' +
+                                    '<td>' + value.harga + '</td>' +
+                                    '<td>' + value.jumlah+ '</td>' +
+                                    '<td>' + value.subtotal+ '</td>' +
+                                '</tr>';
+                        $('#tableDetail tbody').append(tr);
+                    });
+                    $("#modalDetail").modal('show');
+                },
+                error: function (error) {
+                    console.log("Error", error);
+                },
             });
+        });
+
+        // pembayaran
+        $('body').on('click', '.btn-pembayaran', function() {
+            let id = $(this).data('id')
+            let status = $(this).data('status')
+            $('#id_transaksi').val(id)
+            if (status == '0') {
+                $('.pembayaran-group').show()
+            } else {
+                $('.pembayaran-group').hide()
+                $('.btn-save').hide()
+
+                $('.image').html('<h4><strong>Bukti Pembayaran</strong></h4><br>' + '<img src="' + $(this).data('image') + '" style="width: 50%;">')
+            }
+            $('#modalPembayaran').modal('show');
+        });
+
+        // edit pembayaran
+        $('body').on('click', '.btn-edit', function() {
+            $('.pembayaran-group').show()
+            $('.btn-save').show()
+            $('.btn-edit').hide()
+        });
+
+        $('body').on('click', '.btn-save', function() {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            let form = $('#formPembayaran')[0]
+            let data = new FormData(form)
+
+            $.ajax({
+                url: '/order/bukti-pembayaran',
+                type: 'POST',
+                data: data,
+                processData: false,
+                contentType: false,
+                cache: false,
+                success: function (response) {
+                    $('#modalPembayaran').modal('hide');
+                    Swal.fire({
+                        title: response.title,
+                        text: response.message,
+                        icon: response.status,
+                    });
+
+                    if (response.status == 'success') {
+                        setTimeout(function () {
+                            location.reload();
+                        }, 1000);
+                    }
+                    // location.reload();
+                },
+                error: function (error) {
+                    console.log("Error", error);
+                },
+            });
+        });
     });
 </script>
 @endpush

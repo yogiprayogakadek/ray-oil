@@ -22,9 +22,9 @@ class Transaksi extends Model
     {
         return $this->hasMany('App\Models\DetailTransaksi', 'id_transaksi');
     }
-    
+
     public function pembayaran()
     {
-        return $this->hasOne(Pembayaran::class, 'id_penyewaan');
+        return $this->hasOne(Pembayaran::class, 'id_transaksi');
     }
 }
