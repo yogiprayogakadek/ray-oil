@@ -15,7 +15,7 @@
         <div class="pull-right text-end">
             <address>
                 <p class="m-t-30">
-                    <img src="{{asset('assets/images/logo/logo.png')}}" height="100">
+                    {{-- <img src="{{asset('assets/images/logo/logo.png')}}" height="100"> --}}
                 </p>
                 <p class="m-t-30">
                     <b>Dicetak oleh :</b>

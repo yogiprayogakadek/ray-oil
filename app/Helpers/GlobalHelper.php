@@ -147,7 +147,7 @@ function strip_tags_content($string, $id)
 function menu()
 {
     $menu = [
-        'Kategori', 'Produk', 'Tiket', 'Camping'
+        'Kategori', 'Produk', 'Pelanggan', 'Transaksi'
     ];
 
     return $menu;
@@ -158,7 +158,7 @@ function RouteURL()
     $url = [
         0 => 'admin.kategori.index',
         1 => 'admin.produk.index',
-        2 => 'admin.transaksi.index',
+        2 => 'admin.pelanggan.index',
         3 => 'admin.transaksi.index'
     ];
 
@@ -195,20 +195,26 @@ function transaksiTotal($kategori)
 
 function totalPendapatan($model)
 {
-    $a = 'App\Models\\' . $model;
-    if($model == 'Tiket'){
-        $total = transaksiTotal('Tiket');
-    }
-    elseif($model == 'Camping'){
-        $total = transaksiTotal('Camping');
+    
+    // if($model == 'Tiket'){
+    //     $total = transaksiTotal('Tiket');
+    // }
+    // elseif($model == 'Camping'){
+    //     $total = transaksiTotal('Camping');
+    // }
+
+    if($model == 'Pelanggan'){
+        $a = 'App\Models\User';
+    } else {
+        $a = 'App\Models\\' . $model;
     }
 
-    return $total;
+    return $a;
 }
 
 function totalData($model)
 {
-    $a = 'App\Models\\' . $model;
+    // $a = 'App\Models\\' . $model;
     // if($model == 'Tiket'){
     //     $total = transaksiTotal('Tiket');
     // }
@@ -217,6 +223,11 @@ function totalData($model)
     // }
     // else{
     // }
+    if($model == 'Pelanggan'){
+        $a = 'App\Models\User';
+    } else {
+        $a = 'App\Models\\' . $model;
+    }
     $total = $a::count();
     return $total;
 }

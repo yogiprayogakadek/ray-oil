@@ -16,8 +16,7 @@ class PelangganController extends Controller
 
     public function render()
     {
-        $jabatan = Jabatan::where('nama', 'Member')->first();
-        $pelanggan = User::where('id_jabatan', $jabatan->id_jabatan)->get();
+        $pelanggan = User::where('is_admin', false)->get();
         $view = [
             'data' => view('admin.pelanggan.render', compact('pelanggan'))->render()
         ];
@@ -48,8 +47,7 @@ class PelangganController extends Controller
 
     public function print()
     {
-        $jabatan = Jabatan::where('nama', 'Member')->first();
-        $pelanggan = User::where('id_jabatan', $jabatan->id_jabatan)->get();
+        $pelanggan = User::where('is_admin', false)->get();
         $view = [
             'data' => view('admin.pelanggan.print', compact('pelanggan'))->render()
         ];

@@ -27,6 +27,12 @@
                     </a>
                 </li>
                 <li class="slide">
+                    <a class="side-menu__item has-link {{Request::is('admin/pelanggan') ? 'active' : '' }}"
+                        data-bs-toggle="slide" href="{{route('admin.pelanggan.index')}}"><i
+                            class="side-menu__icon fe fe-users"></i><span class="side-menu__label">Pelanggan</span>
+                    </a>
+                </li>
+                <li class="slide">
                     <a class="side-menu__item has-link {{Request::is('admin/kategori') ? 'active' : '' }}"
                         data-bs-toggle="slide" href="{{route('admin.kategori.index')}}"><i
                             class="side-menu__icon fe fe-layers"></i><span class="side-menu__label">Kategori</span>

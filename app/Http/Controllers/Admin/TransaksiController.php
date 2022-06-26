@@ -93,9 +93,9 @@ class TransaksiController extends Controller
     
     public function print($start, $end)
     {
-        $data = Transaksi::with('user', 'detail_transaksi')->whereBetween('tanggal_transaksi', [$start, $end])->get();
+        $transaksi = Transaksi::with('user', 'detail_transaksi')->whereBetween('tanggal_transaksi', [$start, $end])->get();
         $view = [
-            'data' => view('admin.transaksi.print', compact('data'))->render()
+            'data' => view('admin.transaksi.print', compact('transaksi'))->render()
         ];
 
         return response()->json($view);

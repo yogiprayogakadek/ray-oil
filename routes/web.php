@@ -28,6 +28,13 @@ Route::prefix('/')->namespace('Main')->group(function(){
 });
 
 Route::middleware('auth')->group(function(){
+
+    // Edit Profil
+    Route::namespace('Main')->name('profil.')->prefix('/profil')->group(function(){
+        Route::get('/', 'MainController@profil')->name('index');
+        Route::post('/update', 'MainController@update')->name('update');
+    });
+
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::namespace('Admin')->name('admin.')->prefix('/admin')->group(function(){
         Route::get('/', 'DashboardController@index')->name('dashboard');

@@ -15,7 +15,7 @@
         <div class="pull-right text-end">
             <address>
                 <p class="m-t-30">
-                    <img src="{{asset('assets/images/logo-decor.png')}}" height="100">
+                    {{-- <img src="{{asset('assets/images/logo-decor.png')}}" height="100"> --}}
                 </p>
                 <p class="m-t-30">
                     <b>Dicetak oleh :</b>
@@ -36,39 +36,50 @@
                         <tr>
                         <th>No</th>
                         <th>Nama</th>
-                        <th>Status Penyewaan</th>
-                        <th>Status Pembayaran</th>
-                        <th>Status Pengembalian</th>
+                        <th>Status Transaksi</th>
+                        {{-- <th>Status Pembayaran</th> --}}
+                        <th class="text-center">Detail Transaksi</th>
                         <th>Subtotal</th>
                     </tr>
                     {{-- </thead> --}}
                     <tbody>
-                        @foreach ($penyewaan as $penyewaan)
+                        @foreach ($transaksi as $transaksi)
                         <tr>
                             <td>{{$loop->iteration}}</td>
-                            <td>{{$penyewaan->user->nama}}</td>
+                            <td>{{$transaksi->user->nama}}</td>
                             <td>
-                                {{$penyewaan->status == 1 ? 'Berhasil' : 'Menunggu'}}
+                                {{$transaksi->status}}
                             </td>
+                            {{-- <td>
+                                {{$transaksi->pembayaran->status}}
+                            </td> --}}
                             <td>
-                                {{$penyewaan->pembayaran->status == 1 ? 'Pembayaran Berhasil' : ($penyewaan->pembayaran->status == 2 ? 'Menunggu Pembayaran' : 'Pembayaran Ditolak')}}
+                                <table class="table">
+                                    <tr>
+                                        <td>Nama Produk</td>
+                                        <td>Jumlah</td>
+                                    </tr>
+                                    @foreach ($transaksi->detail_transaksi as $item)
+                                        <tr>
+                                            <td>{{$item->produk->nama}}</td>
+                                            <td>{{$item->jumlah}}</td>
+                                        </tr>
+                                    @endforeach
+                                </table>
                             </td>
-                            <td>
-                                {{$penyewaan->pengembalian->status == 1 ? 'Berhasil' : 'Menunggu Pengembalian'}}
-                            </td>
-                            <td>{{convertToRupiah($penyewaan->subtotal)}}</td>
+                            <td>{{convertToRupiah($transaksi->total_harga)}}</td>
                         </tr>
                         @endforeach
                     {{-- </tbody>
                     <tfoot> --}}
-                        <tr>
+                        {{-- <tr>
                             <td colspan="5" class="text-end">
                                 <b>Total</b>
                             </td>
                             <td>
                                 <b>{{convertToRupiah($total)}}</b>
                             </td>
-                        </tr>
+                        </tr> --}}
                     {{-- </tfoot> --}}
                 </table>
             </div>
