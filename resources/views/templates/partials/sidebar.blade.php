@@ -2,12 +2,12 @@
     <div class="app-sidebar__overlay" data-bs-toggle="sidebar"></div>
     <div class="app-sidebar ps ps--active-y sidemenu-scroll">
         <div class="side-header"> <a class="header-brand1" href="{{route('main')}}"> <img
-                    src="{{asset('assets/images/logo/logo.png')}}" class="header-brand-img desktop-logo"
-                    alt="logo"> <img src="{{asset('assets/images/logo/logo.png')}}"
+                    src="{{asset('assets/images/logo/rays_bali.png')}}" class="header-brand-img desktop-logo"
+                    alt="logo"> <img src="{{asset('assets/images/logo/rays_bali.png')}}"
                     class="header-brand-img toggle-logo" alt="logo"> <img
-                    src="{{asset('assets/images/logo/logo.png')}}" class="header-brand-img light-logo"
-                    alt="logo"> <img src="{{asset('assets/images/logo/logo.png')}}"
-                    class="header-brand-img light-logo1" style="width: 100px" alt="logo"> </a> <!-- LOGO -->
+                    src="{{asset('assets/images/logo/rays_bali.png')}}" class="header-brand-img light-logo"
+                    alt="logo"> <img src="{{asset('assets/images/logo/rays_bali.png')}}"
+                    class="header-brand-img light-logo1" style="width: 50px" alt="logo"> </a> <!-- LOGO -->
         </div>
         <div class="main-sidemenu">
             <div class="slide-left disabled" id="slide-left"><svg xmlns="http://www.w3.org/2000/svg"

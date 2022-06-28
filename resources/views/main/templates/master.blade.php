@@ -6,7 +6,7 @@ header("Access-Control-Allow-Origin: *");
 
 <head>
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="assets/images/logo/icon.ico" /> <!-- TITLE -->
+    <link rel="icon" type="image/x-icon" href="assets/images/logo/rays_bali.png" /> <!-- TITLE -->
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -72,8 +72,8 @@ header("Access-Control-Allow-Origin: *");
 			<div class="row">
 				<div class="col-lg-2 col-md-3 col-sm-4">
 					<div class="site-logo">
-						<a href="/"><img src="assets/images/logo/icon.png"
-								alt="logo"></a>
+						<a href="/"><img src="assets/images/logo/rays_bali_2.jpeg"
+								alt="logo" height="50px"></a>
 					</div>
 				</div>
 				<!--- END Col -->
@@ -131,7 +131,7 @@ header("Access-Control-Allow-Origin: *");
 	<!-- START HOME -->
 	<section id="home" class="home-slider">
 		<div class="single_home_slide"
-			style="background-image: url(assets/images/bg.jpg);  background-size:cover;">
+			style="background-image: url(assets/images/main.jpeg);  background-size:cover;">
 			<div class="slide_overlay">
 				<div class="container">
 					<div class="row">
