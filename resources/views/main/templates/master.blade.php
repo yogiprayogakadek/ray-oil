@@ -84,6 +84,7 @@ header("Access-Control-Allow-Origin: *");
 							<ul>
 								@can('member')
 								<li><a class="nav-link" href="{{route('main')}}">Home</a></li>
+								<li><a class="nav-link" href="{{route('profil.index')}}">Profil</a></li>
 								<li><a class="nav-link" href="{{route('member.cart.index')}}">Cart</a></li>
 								@auth
 								<li><a class="nav-link" href="{{route('member.order.index')}}">Order Histori</a></li>
@@ -229,7 +230,7 @@ header("Access-Control-Allow-Origin: *");
 	<script src="https://getmasum.com/html-preview/ward/assets/js/scripts.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.2.1/dist/sweetalert2.all.min.js"></script>
 
-	{{-- <script>
+	<script>
 		function initMap() {
 			const myLatLng = { lat: -8.199408663250226, lng: 115.11857313827554 };
 
@@ -246,7 +247,7 @@ header("Access-Control-Allow-Origin: *");
 		window.initMap = initMap;
 	</script>
 	<script type="text/javascript"
-	src="https://maps.google.com/maps/api/js?key={{ env('GOOGLE_MAP_KEY') }}&callback=initMap" ></script> --}}
+	src="https://maps.google.com/maps/api/js?key=AIzaSyDi4v5LQyLVl2YUfm3Xn3Kb746RO3L8BjA&callback=initMap" ></script>
 
 	@stack('scripts')
 </body>

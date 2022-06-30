@@ -1,8 +1,8 @@
 @extends('templates.master')
 
 @section('title', 'Dashboard')
-@section('pwd', 'Dashboard')
-@section('sub-pwd', 'Data')
+@section('pwd', 'Rays Bali Oil')
+@section('sub-pwd', 'Dashboard')
 
 @section('content')
 <div class="row">

@@ -1,8 +1,8 @@
 @extends('templates.master')
 
 @section('title', 'Produk')
-@section('pwd', 'Produk')
-@section('sub-pwd', 'Data')
+@section('pwd', 'Rays Bali Oil')
+@section('sub-pwd', 'Produk')
 @push('css')
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">

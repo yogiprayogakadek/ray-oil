@@ -1,8 +1,8 @@
 @extends('templates.master')
 
 @section('title', 'Kategori')
-@section('pwd', 'Kategori')
-@section('sub-pwd', 'Data')
+@section('pwd', 'Rays Bali Oil')
+@section('sub-pwd', 'Kategori')
 @push('css')
 <meta name="csrf-token" content="{{ csrf_token() }}">
 @endpush
