@@ -4,6 +4,7 @@ use App\Models\DetailTransaksi;
 use App\Models\Kategori;
 use App\Models\Produk;
 use App\Models\Transaksi;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -224,11 +225,13 @@ function totalData($model)
     // else{
     // }
     if($model == 'Pelanggan'){
-        $a = 'App\Models\User';
+        // $a = 'App\Models\User';
+        $total = User::where('is_admin', false)->count();
     } else {
         $a = 'App\Models\\' . $model;
+        $total = $a::count();
     }
-    $total = $a::count();
+    // $total = $a::count();
     return $total;
 }
 

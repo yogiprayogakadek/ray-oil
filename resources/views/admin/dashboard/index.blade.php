@@ -19,7 +19,7 @@
                     <div class="card-body">
                         <div class="d-flex">
                             <div class="mt-2">
-                                <h6 class="">Jumlah {{$menu == 'Tiket' ? $menu . ' Terjual' : ($menu == 'Camping' ? $menu . ' Terjual' : $menu)}}</h6>
+                                <h6 class="">Jumlah {{$menu}}</h6>
                                 @if (totalProduk() > 0) 
                                     {{-- @if ($menu == 'Tiket' || $menu == 'Camping')
                                     0
