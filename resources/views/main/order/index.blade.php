@@ -12,6 +12,11 @@
 @endsection
 
 @section('content')
+<div class="alert alert-info">
+    <i class="fa fa-exclamation-triangle"></i>
+    <strong>Sang Made Rama Widiarthana (768201009829537) - BCA</strong>
+    <!-- Selamat datang, {{nama()}} -->
+</div>
 <div class="card render">
     <div class="card-body ">
         <table class="table table-bordered text-nowrap border-bottom dataTable no-footer" role="grid" id="tableData">

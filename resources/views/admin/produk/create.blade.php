@@ -35,11 +35,11 @@
                     <input type="text" class="form-control" name="harga" id="harga" placeholder="masukkan harga produk">
                     <div class="invalid-feedback error-harga"></div>
                 </div>
-                {{-- <div class="form-group">
+                <div class="form-group">
                     <label for="stok">Stok Produk</label>
                     <input type="text" class="form-control" name="stok" id="stok" placeholder="masukkan stok">
                     <div class="invalid-feedback error-stok"></div>
-                </div> --}}
+                </div>
                 <div class="form-group">
                     <label for="foto">Foto Produk</label>
                     <input type="file" class="form-control" name="foto" id="foto" placeholder="masukkan foto" multiple="multiple">

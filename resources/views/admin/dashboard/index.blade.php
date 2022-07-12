@@ -21,12 +21,6 @@
                             <div class="mt-2">
                                 <h6 class="">Jumlah {{$menu}}</h6>
                                 @if (totalProduk() > 0) 
-                                    {{-- @if ($menu == 'Tiket' || $menu == 'Camping')
-                                    0
-                                    <h2 class="mb-0 number-font">{{totalDetailPendapatan('Tiket') > 0 ? totalPendapatan('Tiket') : (totalDetailPendapatan('Camping') > 0 ? totalPendapatan('Camping') : 0)}}</h2>
-                                    @else
-                                    0
-                                    @endif --}}
                                     <h2 class="mb-0 number-font">{{totalData($menu)}}</h2>
                                 @else
                                     <h2 class="mb-0 number-font">0</h2>
@@ -40,6 +34,33 @@
                                 </span>
                             </span>
                         </a>
+                    </div>
+                </div>
+            </div>
+            @endforeach
+
+            {{-- Total Transaksi --}}
+            @foreach (transactionCategory() as $key => $category)
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xl-4">
+                <div class="card overflow-hidden">
+                    <div class="card-body">
+                        <div class="d-flex">
+                            <div class="mt-2">
+                                <h6 class="">Jumlah {{$category == "Transaksi Diterima" ? 'Transaksi Baru' : $category}}</h6>
+                                {{-- @if (totalProduk() > 0) 
+                                    <h2 class="mb-0 number-font">{{totalData($menu)}}</h2>
+                                @else
+                                @endif --}}
+                                <h2 class="mb-0 number-font">{{totalTransaction()[$key]}}</h2>
+                            </div>
+                        </div>
+                        {{-- <a href="{{route(RouteUrl()[$key])}}">
+                            <span class="text-muted fs-12">
+                                <span class="text-secondary">
+                                    <i class="fe fe-arrow-right-circle text-secondary"></i> Detail
+                                </span>
+                            </span>
+                        </a> --}}
                     </div>
                 </div>
             </div>

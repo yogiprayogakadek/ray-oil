@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\DetailTransaksi;
 use App\Models\Kota;
 use App\Models\Pembayaran;
+use App\Models\Produk;
 use App\Models\Transaksi;
 use Illuminate\Http\Request;
 
@@ -48,22 +50,51 @@ class TransaksiController extends Controller
             }
 
             if(in_array($transaksi->status, ['Transaksi Diterima', 'Transaksi Ditolak'])) {
-                // dd(2);
-                $transaksi->update([
+                // dd(1);
+                $original_status = $transaksi->getOriginal('status');
+                // dd($original_status);
+                $new = $transaksi->update([
                     'status' => $request->status_transaksi
                 ]);
                 $pembayaran->update([
                     'status' => $request->status_pembayaran
                 ]);
+
+                if($original_status == 'Transaksi Diterima') {
+                    // dd('1');
+                    if($new->status != 'Transaksi Diterima') {
+                        $transaksi = DetailTransaksi::where('id_transaksi', $transaksi->id_transaksi)->get();
+                        foreach($transaksi as $t) {
+                            $produk = Produk::find($t->id_produk);
+                            $produk->update([
+                                'stok' => $produk->stok + $t->jumlah
+                            ]);
+                        }
+                    }
+                }
             } else {
+                $original_status = $transaksi->getOriginal('status');
+                // dd($original_status);
                 if($request->status_transaksi == 'Menunggu Konfirmasi Pembayaran') {
-                    // dd(3);
-                    $transaksi->update([
-                        'status' => $request->status_transaksi
-                    ]);
-                    $pembayaran->update([
-                        'status' => 'Menunggu Konfirmasi Pembayaran'
-                    ]);
+                    // $transaksi->update([
+                    //     'status' => $request->status_transaksi
+                    // ]);
+                    // $pembayaran->update([
+                    //     'status' => 'Menunggu Konfirmasi Pembayaran'
+                    // ]);
+
+                    if($original_status == 'Transaksi Diterima') {
+                        // dd('1');
+                        // if($original_status != 'Transaksi Diterima') {
+                            $dd = DetailTransaksi::where('id_transaksi', $transaksi->id_transaksi)->get();
+                            foreach($dd as $t) {
+                                $produk = Produk::find($t->id_produk);
+                                $produk->update([
+                                    'stok' => $produk->stok + $t->jumlah
+                                ]);
+                            }
+                        // }
+                    }
                 } else {
                     // dd($request->all());
                     $transaksi->update([
@@ -72,6 +103,18 @@ class TransaksiController extends Controller
                     $pembayaran->update([
                         'status' => $request->status_pembayaran
                     ]);
+
+                    if(Transaksi::find($request->id_transaksi)->status == 'Transaksi Diterima') {
+                        // dd(1);
+                        $transaksi = DetailTransaksi::where('id_transaksi', $transaksi->id_transaksi)->get();
+                        foreach ($transaksi as $t) {
+                            $produk = Produk::find($t->id_produk);
+                            // dd($produk);
+                            $produk->update([
+                                'stok' => $produk->stok - $t->jumlah
+                            ]);
+                        }
+                    }
                 }
             }
 
@@ -166,4 +209,38 @@ class TransaksiController extends Controller
             ]);
         }
     }
+
+    // Proses Index
+    // public function indexProses()
+    // {
+    //     return view('admin.transaksi.proses.index');
+    // }
+
+    // public function renderProses($start, $end)
+    // {
+    //     $data = Transaksi::with('user', 'detail_transaksi', 'pembayaran')->where('status', 'Transaksi Diterima')->whereBetween('tanggal_transaksi', [$start, $end])->get();
+
+    //     $view = [
+    //         'data' => view('admin.transaksi.proses.render', compact('data'))->render()
+    //     ];
+
+    //     return response()->json($view);
+    // }
+
+    // // Proses Belum Dibayar
+    // public function indexBelumBayar()
+    // {
+    //     return view('admin.transaksi.belum-bayar.index');
+    // }
+
+    // public function renderBelumBayar($start, $end)
+    // {
+    //     $data = Transaksi::with('user', 'detail_transaksi', 'pembayaran')->where('status', 'Menunggu Konfirmasi Pembayaran')->whereBetween('tanggal_transaksi', [$start, $end])->get();
+
+    //     $view = [
+    //         'data' => view('admin.transaksi.belum-bayar.render', compact('data'))->render()
+    //     ];
+
+    //     return response()->json($view);
+    // }
 }

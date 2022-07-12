@@ -52,6 +52,30 @@
                         {{-- <span class="badge bg-pink side-badge">{{pembayaranBaru()}}</span> --}}
                     </a>
                 </li>
+
+                {{-- <li class="slide {{Request::is('admin/transaksi/proses') ? 'is-expanded' : (Request::is('admin/transaksi/belum-bayar') ? 'is-expanded' : (Request::is('admin/transaksi/pengembalian') ? 'is-expanded' : '')) }}"> 
+                    <a class="side-menu__item {{Request::is('admin/transaksi/proses') ? 'active' : (Request::is('admin/transaksi/belum-bayar') ? 'active' : (Request::is('admin/transaksi/pengembalian') ? 'active' : '')) }}" data-bs-toggle="slide" href="javascript:void(0)"><i
+                            class="side-menu__icon fe fe-dollar-sign"></i><span class="side-menu__label">Transaksi</span><i
+                            class="angle fe fe-chevron-right"></i></a>
+                    <ul class="slide-menu open">
+                        <li>
+                            <a href="{{route('admin.transaksi.belum-bayar.index')}}" class="slide-item {{Request::is('admin/transaksi/belum-bayar') ? 'active' : '' }}" class="slide-item">
+                                <span class="side-menu__label">Belum Bayar</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{route('admin.transaksi.proses.index')}}" class="slide-item {{Request::is('admin/transaksi/proses') ? 'active' : '' }}">
+                                <span class="side-menu__label">Dalam Proses</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{route('admin.transaksi.index')}}" class="slide-item {{Request::is('admin/transaksi/pengembalian') ? 'active' : '' }}" class="slide-item">
+                                <span class="side-menu__label">Selesai</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li> --}}
+
                 @endcan
                 
                 @can('member')

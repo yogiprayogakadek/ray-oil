@@ -15,6 +15,7 @@
                             <thead>
                                 <tr class="border-top">
                                     <th>Product</th>
+                                    <th>Stock</th>
                                     <th>Title</th>
                                     <th>Price</th>
                                     <th>Quantity</th>
@@ -30,6 +31,7 @@
                                             <img src="{{ asset($cart->associatedModel['foto']) }}" class="text-center" style="width: 100px"> 
                                         </div>
                                     </td>
+                                    <td><span id="stock-{{$cart->id}}">{{stockProduct($cart->id)}}</span></td>
                                     <td>{{ $cart->name }} <br> ({{$cart->associatedModel['berat_barang']}} gram)</td>
                                     <td class="fw-bold">{{convertToRupiah($cart->price)}}</td>
                                     <td>
@@ -58,6 +60,30 @@
                                 </tr>
                                 @endforelse 
                             </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-4"></div>
+            <div class="col-4"></div>
+            <div class="col-4 mb-2">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">No. Rekening</div>
+                    </div>
+                    <div class="card-body py-2">
+                        <table class="table">
+                            <tr>
+                                <td>Nama</td>
+                                <td>: Sang Made Rama Widiarthana</td>
+                            </tr>
+
+                            <tr>
+                                <td>No. Rek</td>
+                                <td>: 768201009829537</td>
+                            </tr>
                         </table>
                     </div>
                 </div>
@@ -334,49 +360,57 @@
 
             $('body').on('click', '.counter-plus', function() {
                 var id = $(this).data('id');
+                var stock = $('#stock-' + id).text();
                 var qty = parseInt($(this).parent().find('.qty').val()) + 1;
                 // console.log(qty);
                 var cat = 'plus';
-                $.ajax({
-                    url: '/cart/update-cart',
-                    type: 'POST',
-                    data: {
-                        id_produk: id,
-                        qty: qty,
-                        cat: cat,
-                        total_harga: $('body .bill').text().replace(/[^0-9]/g,''),
-                        provinsi: $('#provinsi').val(),
-                        kota: $('#kota').val(),
-                        alamat: $('#alamat').val(),
-                        _token: $('meta[name="csrf-token"]').attr('content')
-                    },
-                    success: function (result) {
-                        setTimeout(() => {
-                            $('.city-group').hide();
-                            $('body').find('.complete-address').hide();
-                            $('body').find('#provinsi').trigger('change');
-                        }, 500);
-                        setTimeout(() => {
-                            $('body').find('#kota').val(result.id_kota).trigger('change');
-                            $('body').find('#alamat').val(result.alamat);
-                        }, 1500);
-                        // setTimeout(() => {
-                        //     $('body').find('#alamat').val(result.alamat);
-                        // }, 3000);
-                        Swal.fire(
-                            result.title,
-                            result.message,
-                            result.status
-                        )
-                        if (result.status == 'success') {
-                            $('.render').empty();
-                            $('.render').html(result.data);
-                            // $('.cart-render').empty();
-                            // $('.cart-render').html(result.cart);
+                if(qty <= stock) {
+                    $.ajax({
+                        url: '/cart/update-cart',
+                        type: 'POST',
+                        data: {
+                            id_produk: id,
+                            qty: qty,
+                            cat: cat,
+                            total_harga: $('body .bill').text().replace(/[^0-9]/g,''),
+                            provinsi: $('#provinsi').val(),
+                            kota: $('#kota').val(),
+                            alamat: $('#alamat').val(),
+                            _token: $('meta[name="csrf-token"]').attr('content')
+                        },
+                        success: function (result) {
+                            setTimeout(() => {
+                                $('.city-group').hide();
+                                $('body').find('.complete-address').hide();
+                                $('body').find('#provinsi').trigger('change');
+                            }, 500);
+                            setTimeout(() => {
+                                $('body').find('#kota').val(result.id_kota).trigger('change');
+                                $('body').find('#alamat').val(result.alamat);
+                            }, 1500);
+                            // setTimeout(() => {
+                            //     $('body').find('#alamat').val(result.alamat);
+                            // }, 3000);
+                            Swal.fire(
+                                result.title,
+                                result.message,
+                                result.status
+                            )
+                            if (result.status == 'success') {
+                                $('.render').empty();
+                                $('.render').html(result.data);
+                                // $('.cart-render').empty();
+                                // $('.cart-render').html(result.cart);
+                            }
                         }
-                    }
-                });
-
+                    });
+                } else {
+                    Swal.fire(
+                        'Oops...',
+                        'Stock tidak mencukupi!',
+                        'error'
+                    )
+                }
             });
 
             $('body').on('click', '.counter-minus', function() {

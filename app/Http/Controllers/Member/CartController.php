@@ -41,27 +41,35 @@ class CartController extends Controller
         $user_id = auth()->user()->id_user;
 
         try {
-            if(\Cart::session($user_id)->get($produk->id_produk)){
+            if($request->jumlah > $produk->stok) {
                 return response()->json([
-                    'status' => 'error',
-                    'message' => 'Produk sudah ada di keranjang',
-                    'title' => 'Gagal',
+                    'status' => 'info',
+                    'message' => 'Stok tidak mencukupi',
+                    'title' => 'Info',
                 ]);
             } else {
-                \Cart::session($user_id)->add([
-                    'id' => $produk->id_produk,
-                    'name' => $produk->nama,
-                    'price' => $produk->harga,
-                    'quantity' => $request->jumlah,
-                    'associatedModel' => $produk,
-                ]);
-
-                return response()->json([
-                    'status' => 'success',
-                    'message' => 'Produk berhasil ditambahkan ke keranjang',
-                    'title' => 'Berhasil',
-                    // 'cart' => view('templates.partials.header-update')->render(),
-                ]);
+                if(\Cart::session($user_id)->get($produk->id_produk)){
+                    return response()->json([
+                        'status' => 'error',
+                        'message' => 'Produk sudah ada di keranjang',
+                        'title' => 'Gagal',
+                    ]);
+                } else {
+                    \Cart::session($user_id)->add([
+                        'id' => $produk->id_produk,
+                        'name' => $produk->nama,
+                        'price' => $produk->harga,
+                        'quantity' => $request->jumlah,
+                        'associatedModel' => $produk,
+                    ]);
+    
+                    return response()->json([
+                        'status' => 'success',
+                        'message' => 'Produk berhasil ditambahkan ke keranjang',
+                        'title' => 'Berhasil',
+                        // 'cart' => view('templates.partials.header-update')->render(),
+                    ]);
+                }
             }
         } catch (\Exception $e) {
             return response()->json([

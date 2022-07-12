@@ -30,7 +30,7 @@ class ProdukRequest extends FormRequest
             'deskripsi' => 'required',
             'harga' => 'required',
             'berat' => 'required|numeric',
-            // 'stok' => 'required',
+            'stok' => 'required',
         ];
 
         if (!Request::instance()->has('id')) {
@@ -67,7 +67,7 @@ class ProdukRequest extends FormRequest
             'deskripsi' => 'Deskripsi',
             'harga' => 'Harga',
             'berat' => 'Berat',
-            // 'stok' => 'Stok',
+            'stok' => 'Stok',
             'foto' => 'Foto',
         ];
     }

@@ -74,7 +74,7 @@
 		<div class="row text-left">
 			@forelse ($data as $produk)
 			<div class="col-xl-4 col-lg-6 col-12">
-				<div class="single_package" data-id="{{$produk->id_produk}}" data-nama="{{$produk->nama}}" data-kategori="{{$produk->kategori->nama}}" data-harga="{{convertToRupiah($produk->harga)}}" data-deskripsi="{{$produk->deskripsi}}">
+				<div class="single_package" data-id="{{$produk->id_produk}}" data-nama="{{$produk->nama}}" data-kategori="{{$produk->kategori->nama}}" data-harga="{{convertToRupiah($produk->harga)}}" data-deskripsi="{{$produk->deskripsi}}" data-stok="{{$produk->stok}}">
 					<a href="javascript:void()">
 						<div class="pack_image">
 							<img src="{{asset($produk->foto)}}" class="img-fluid">
@@ -175,6 +175,9 @@
 					<div class="col-2"><strong>Harga</strong></div>
 					<div class="col-10"><span id="harga"></span></div>
 
+					<div class="col-2"><strong>Stok</strong></div>
+					<div class="col-10"><span id="stok"></span></div>
+
 					<div class="col-2"><strong>Kategori</strong></div>
 					<div class="col-10"><span id="kategori"></span></div>
 
@@ -254,6 +257,7 @@
 		let harga = $(this).attr('data-harga');
 		let kategori = $(this).attr('data-kategori');
 		let deskripsi = $(this).attr('data-deskripsi');
+		let stok = $(this).attr('data-stok');
 
 		$('#modalDetail').find('.add-to-cart').attr('data-id', id);
 		$('#modalDetail #id_produk').val(id);
@@ -261,6 +265,7 @@
 		$('#modalDetail #harga').html(harga);
 		$('#modalDetail #kategori').html(kategori);
 		$('#modalDetail #deskripsi').html(deskripsi);
+		$('#modalDetail #stok').html(stok);
 
 		$('#modalDetail #total').val(convertToRupiah($('#harga').text().replace(/[^0-9]/g, '')*1));
 		$('.order').prop('hidden', true)
@@ -274,16 +279,31 @@
 		let harga = $('#harga').text().replace(/[^0-9]/g, '');
 		let total = jumlah * harga;
 		$('#total').val(convertToRupiah(total));
+		// let stok = $('#stok').text();
+		// if(jumlah > stok) {
+		// 	$(this).val(stok);
+		// 	$('#total').val(convertToRupiah(stok*harga));
+		// } else {
+		// 	$('#total').val(convertToRupiah(total));
+		// }
 	})
 
 	$('#jumlah').on('change',function() {
 		let jumlah = $(this).val();
+		let stok = $('#stok').text();
+		let harga = ($('#harga').text().replace(/[^0-9]/g, '')*1);
+		let total = 1 * harga;
 		if (jumlah < 1 || jumlah == '') {
-			let harga = ($('#harga').text().replace(/[^0-9]/g, '')*1);
 			$('#jumlah').val(1);
-			let total = 1 * harga;
 			$('#total').val(convertToRupiah(total));
 		}
+		// else if (jumlah > stok) {
+		// 	$('#jumlah').val(stok);
+		// 	$('#total').val(convertToRupiah(total));
+		// } else {
+		// 	alert('as')
+		// 	// $('#total').val(convertToRupiah(total));
+		// }
 	})
 
 	$('.must-login').click(function(){

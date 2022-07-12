@@ -148,7 +148,10 @@ function strip_tags_content($string, $id)
 function menu()
 {
     $menu = [
-        'Kategori', 'Produk', 'Pelanggan', 'Transaksi'
+        'Kategori', 
+        'Produk', 
+        'Pelanggan', 
+        // 'Transaksi'
     ];
 
     return $menu;
@@ -160,7 +163,7 @@ function RouteURL()
         0 => 'admin.kategori.index',
         1 => 'admin.produk.index',
         2 => 'admin.pelanggan.index',
-        3 => 'admin.transaksi.index'
+        // 3 => 'admin.transaksi.index'
     ];
 
     return $url;
@@ -264,4 +267,29 @@ function productWeight()
     }
 
     return $berat_bersih;
+}
+
+function transactionCategory()
+{
+    $category = [
+        'Transaksi Diterima', 'Menunggu Konfirmasi Pembayaran', 'Transaksi Selesai'
+    ];
+
+    return $category;
+}
+
+function totalTransaction()
+{
+    $total = [];
+    foreach(transactionCategory() as $category){
+        $total[] = Transaksi::where('status', $category)->count();
+    }
+
+    return $total;
+}
+
+function stockProduct($id)
+{
+    $product = Produk::where('id_produk', $id)->first()->stok;
+    return $product;
 }

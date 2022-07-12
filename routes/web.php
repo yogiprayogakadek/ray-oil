@@ -73,6 +73,18 @@ Route::middleware('auth')->group(function(){
         });
 
         Route::prefix('/transaksi')->name('transaksi.')->group(function(){
+            // Route::prefix('proses')->name('proses.')->group(function() {
+            //     Route::get('/', 'TransaksiController@indexProses')->name('index');
+            //     Route::get('/render/{start}/{end}', 'TransaksiController@renderProses')->name('render');
+            //     Route::get('/print/{start}/{end}', 'TransaksiController@printProses')->name('print');
+            // });
+
+            // Route::prefix('belum-bayar')->name('belum-bayar.')->group(function() {
+            //     Route::get('/', 'TransaksiController@indexBelumBayar')->name('index');
+            //     Route::get('/render/{start}/{end}', 'TransaksiController@renderBelumBayar')->name('render');
+            //     Route::get('/print/{start}/{end}', 'TransaksiController@printBelumBayar')->name('print');
+            // });
+
             Route::get('/', 'TransaksiController@index')->name('index');
             Route::get('/render', 'TransaksiController@render')->name('render');
             Route::post('/change-status-pembayaran', 'TransaksiController@updateStatus')->name('status.pembayaran');

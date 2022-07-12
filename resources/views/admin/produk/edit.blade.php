@@ -27,7 +27,7 @@
                 </div>
                 <div class="form-group">
                     <label for="berat">Berat Produk</label>
-                    <input type="text" class="form-control" name="berat" id="berat" placeholder="masukkan berat produk" value="{{$data->berat_produk}}">
+                    <input type="text" class="form-control" name="berat" id="berat" placeholder="masukkan berat produk" value="{{$data->berat_barang}}">
                     <span class="text-muted text-small">*berat produk dalam gram</span>
                     <div class="invalid-feedback error-berat"></div>
                 </div>
@@ -35,6 +35,11 @@
                     <label for="harga">Harga Produk</label>
                     <input type="text" class="form-control" name="harga" id="harga" placeholder="masukkan harga produk" value="{{convertToRupiah($data->harga)}}">
                     <div class="invalid-feedback error-harga"></div>
+                </div>
+                <div class="form-group">
+                    <label for="stok">Stok Produk</label>
+                    <input type="text" class="form-control" name="stok" id="stok" placeholder="masukkan stok" value="{{$data->stok}}">
+                    <div class="invalid-feedback error-stok"></div>
                 </div>
                 <div class="form-group">
                     <label for="foto">Foto Produk</label>
