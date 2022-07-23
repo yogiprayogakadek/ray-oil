@@ -87,11 +87,10 @@ header("Access-Control-Allow-Origin: *");
 								<li><a class="nav-link" href="{{route('profil.index')}}">Profil</a></li>
 								<li><a class="nav-link" href="{{route('member.cart.index')}}">Cart</a></li>
 								@auth
-								<li><a class="nav-link" href="{{route('member.order.index')}}">Order Histori</a></li>
+								<li><a class="nav-link" href="{{route('member.order.index')}}">Order History</a></li>
 								<li>
 									<a class="nav-link" href="{{route('logout')}}"
-										onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Sign
-										Out</a>
+										onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Log Out</a>
 								</li>
 								<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
 									@csrf
@@ -104,8 +103,7 @@ header("Access-Control-Allow-Origin: *");
 								<li><a class="nav-link" href="{{route('admin.dashboard')}}">Dashboard</a></li>
 								<li>
 									<a class="nav-link" href="{{route('logout')}}"
-										onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Sign
-										Out</a>
+										onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Log Out</a>
 								</li>
 								<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
 									@csrf
@@ -238,10 +236,17 @@ header("Access-Control-Allow-Origin: *");
 				zoom: 5,
 				center: myLatLng,
 			});
-			new google.maps.Marker({
+			
+			var infoWindow = new google.maps.InfoWindow();
+			var marker = new google.maps.Marker({
 				position: myLatLng,
-				map,
-				title: "Hello Rajkot!",
+				map: map,
+				title: "Rays Bali Oil",
+			});
+
+			marker.addListener("click", function () {
+				infoWindow.setContent("<a href='https://www.google.com/maps/place/Rays+Bali+Oil/@-8.199408663250226,115.11857313827554' target='_blank'>Rays Bali Oil</a>");
+				infoWindow.open(map, marker);
 			});
 		}
 		window.initMap = initMap;

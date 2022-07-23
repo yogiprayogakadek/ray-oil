@@ -53,6 +53,9 @@
                     <div class="invalid-feedback error-deskripsi"></div>
                 </div>
                 <div class="form-group pull-right">
+                    <button class="btn btn-danger btn-data" type="button">
+                        <i class="fa fa-undo"></i> Batal
+                    </button>
                     <button class="btn btn-success btn-update" type="button">
                         <i class="fa fa-save"></i> Simpan
                     </button>

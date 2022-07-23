@@ -12,7 +12,11 @@
 						<div class="single_choose mrb40">
 							<i class="fa-solid fa-history"></i>
 							<h3>History</h3>
-							<p>Banyu which means water, Wana which means forest, and Amertha which means blessing or grace.</p>
+							<p>Rays Bali Oil is product are made in Indonesia. 
+								We choose the best quality and freshest virgin coconut to 
+								purifying the fruit flesh to get the 100% natural coconut oil to 
+								produce.
+								</p>
 						</div>
 					</div>
 
@@ -20,23 +24,20 @@
 						<div class="single_choose mrb40">
 							<i class="fa-solid fa-tint"></i>
 							<h3>Unique</h3>
-							<p>Waterfall has a unique rock relief and has a natural curtain made of the waterfall itself</p>
+							<p>Rays Bali Oil has significant differences as compare to others, 
+								we use Indonesia local from grand grandma Bali recipes„ 
+								Our product do not contain any Preservatives and Additives 
+								during processing, all coconuts are particularly selected to 
+								ensuring freshest and best quality
+								</p>
 						</div>
 					</div>
 
 					<div class="col-xl-6 col-lg-6 col-md-6 col-12">
 						<div class="single_choose">
 							<i class="fa-solid fa-puzzle-piece"></i>
-							<h3>Facilities</h3>
-							<p>Our facilities here include parking areas, toilets, local guides, and camping areas.</p>
-						</div>
-					</div>
-
-					<div class="col-xl-6 col-lg-6 col-md-6 col-12">
-						<div class="single_choose">
-							<i class="fa-solid fa-map-location"></i>
 							<h3>Location</h3>
-							<p>Banyu Wana Amertha Waterfall is located in Wanagiri Village, Buleleng-Bali. The distance from the center of Denpasar is about 63 Km.</p>
+							<p>Rays Bali Oil is located in Nongan Village, Karangasem-Bali. The distance from the center of Denpasar is about 48 Km</p>
 						</div>
 					</div>
 				</div>

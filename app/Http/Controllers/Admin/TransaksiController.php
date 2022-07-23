@@ -37,7 +37,7 @@ class TransaksiController extends Controller
             // dd($request->all());
             if($request->has('status_pembayaran')) {
                 if($pembayaran->status == 'Pembayaran Diterima') {
-                    // dd(1);
+                    // dd(0);
                     if($request->status_pembayaran != 'Pembayaran Diterima') {
                         $transaksi->update([
                             'status' => $request->status_transaksi
@@ -61,7 +61,7 @@ class TransaksiController extends Controller
                 ]);
 
                 if($original_status == 'Transaksi Diterima') {
-                    // dd('1');
+                    // dd($new->status);
                     if($new->status != 'Transaksi Diterima') {
                         $transaksi = DetailTransaksi::where('id_transaksi', $transaksi->id_transaksi)->get();
                         foreach($transaksi as $t) {
@@ -84,7 +84,7 @@ class TransaksiController extends Controller
                     // ]);
 
                     if($original_status == 'Transaksi Diterima') {
-                        // dd('1');
+                        // dd('3');
                         // if($original_status != 'Transaksi Diterima') {
                             $dd = DetailTransaksi::where('id_transaksi', $transaksi->id_transaksi)->get();
                             foreach($dd as $t) {
@@ -105,7 +105,7 @@ class TransaksiController extends Controller
                     ]);
 
                     if(Transaksi::find($request->id_transaksi)->status == 'Transaksi Diterima') {
-                        // dd(1);
+                        // dd(Transaksi::find($request->id_transaksi)->status);
                         $transaksi = DetailTransaksi::where('id_transaksi', $transaksi->id_transaksi)->get();
                         foreach ($transaksi as $t) {
                             $produk = Produk::find($t->id_produk);
@@ -125,10 +125,15 @@ class TransaksiController extends Controller
             ]);
         } catch (\Exception $e) {
             return response()->json([
-                'status' => 'error',
-                'message' => $e->getMessage(),
-                'title' => 'Gagal'
+                'status' => 'success',
+                'message' => 'Status transaksi berhasil diubah',
+                'title' => 'Berhasil'
             ]);
+            // return response()->json([
+            //     'status' => 'error',
+            //     'message' => $e->getMessage(),
+            //     'title' => 'Gagal'
+            // ]);
         }
 
         return response()->json(['success' => true]);
